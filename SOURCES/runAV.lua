@@ -9,7 +9,7 @@ end
 
 function main(filename)
 
-   m.log(1,"Inspection for "..filename);
+   m.log(4,"Inspection for "..filename);
 
    -- Configure paths
    local clamdscan  = "/usr/bin/clamdscan"

@@ -5,7 +5,7 @@
 
 Name:   mod_security-clamav-connector
 Version:  2.0
-Release:  0%{?dist}
+Release:  1%{?dist}
 Summary:  mod_security to ClamAV connector
 Group:    System Environment/Daemons
 License:  ASL 2.0
@@ -37,6 +37,8 @@ rm -rf %{buildroot}
 %attr(750,root,apache) %{_httpd_modsecdir}/runAV.lua
 
 %changelog
+* Wed Feb 12 2020 Matt Saladna <matt@apisnetworks.com> - 2.0-1
+- Downgrade "Inspection" notice to debug level
 * Thu Dec 05 2019 Matt Saladna <matt@apisnetworks.com> - 2.0-0
 - Switch scanner to Lua script
 * Sat May 26 2018 Matt Saladna <matt@apisnetworks.com> - 1.0-0
