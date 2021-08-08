@@ -5,10 +5,11 @@
 
 Name:   mod_security-clamav-connector
 Version:  2.0
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  mod_security to ClamAV connector
 Group:    System Environment/Daemons
 License:  ASL 2.0
+BuildArch: noarch 
 URL:    https://github.com/apisnetworks/mod_security-clamav-connector
 Source0:  runAV.lua
 Source1:  mod_security-clamav.conf
@@ -26,17 +27,19 @@ policy for file uploads in Apache.
 
 %install
 install -Dm 750 %{SOURCE0} %{buildroot}%{_httpd_modsecdir}/runAV.lua
-install -Dp -m 0644 %{SOURCE1} %{buildroot}%{_httpd_modsecdir}/activated_rules/clamav.conf
+install -Dp -m 0644 %{SOURCE1} %{buildroot}%{_httpd_modsecdir}/activated_rules/clamav-post.conf
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) %{_httpd_modsecdir}/activated_rules/clamav.conf
+%config(noreplace) %{_httpd_modsecdir}/activated_rules/clamav-post.conf
 %attr(750,root,apache) %{_httpd_modsecdir}/runAV.lua
 
 %changelog
+* Sat Aug 07 2021 Matt Saladna <matt@apisnetworks.com> - 2.0-2
+- ClamAV bypass marker
 * Wed Feb 12 2020 Matt Saladna <matt@apisnetworks.com> - 2.0-1
 - Downgrade "Inspection" notice to debug level
 * Thu Dec 05 2019 Matt Saladna <matt@apisnetworks.com> - 2.0-0
